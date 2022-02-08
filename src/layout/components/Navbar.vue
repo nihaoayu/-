@@ -68,8 +68,8 @@ export default {
           type: 'warning'
         })
         this.$store.dispatch('user/logout')
-        this.$router.push('/login')
-        // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+        // this.$router.push('/login')
+        this.$router.push(`/login?redirect=${this.$route.fullPath}`)
       } catch (error) {
         console.log('取消', error)
       }

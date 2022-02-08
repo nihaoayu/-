@@ -82,7 +82,7 @@ export default {
       try {
         await this.$refs.loginForm.validate()
         await this.$store.dispatch('user/login', this.loginForm)
-        this.$router.push('/')
+        this.$router.push(this.redirect || '/')
       } catch (error) {
         console.log(error)
       }
