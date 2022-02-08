@@ -56,12 +56,23 @@ export default {
   },
 
   methods: {
+    // 退出登录
     toggleSideBar () {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout () {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      try {
+        await this.$confirm('此操作将退出登录, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+        this.$store.dispatch('user/logout')
+        this.$router.push('/login')
+        // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      } catch (error) {
+        console.log('取消', error)
+      }
     }
   }
 }

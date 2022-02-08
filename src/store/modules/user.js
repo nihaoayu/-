@@ -37,6 +37,10 @@ export default {
       const res = await getUserInfo()
       const avatar = await getUserDetailById(res.userId)
       ctx.commit('setUserInfo', { ...res, ...avatar })
+    },
+    logout (ctx) {
+      ctx.commit('removeToken')
+      ctx.commit('removeUserInfo')
     }
   }
 }
