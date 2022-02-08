@@ -1,4 +1,4 @@
-import { login, getUserInfo } from '@/api/user'
+import { login, getUserInfo, getUserDetailById } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 export default {
   namespaced: true,
@@ -35,7 +35,8 @@ export default {
     // 获取用户信息
     async getUserInfoActions (ctx) {
       const res = await getUserInfo()
-      ctx.commit('setUserInfo', res)
+      const avatar = await getUserDetailById(res.userId)
+      ctx.commit('setUserInfo', { ...res, ...avatar })
     }
   }
 }
