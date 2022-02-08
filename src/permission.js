@@ -17,6 +17,9 @@ router.beforeEach(async (to, from, next) => {
       next('/')
     } else {
       next()
+      if (!store.getters.name) {
+        await store.dispatch('user/getUserInfoActions')
+      }
     }
   } else {
     if (whiteList.indexOf(to.path) > -1) {
